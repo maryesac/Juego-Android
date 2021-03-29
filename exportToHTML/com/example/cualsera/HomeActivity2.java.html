@@ -1,0 +1,80 @@
+<html>
+<head>
+<title>HomeActivity2.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cc7832;}
+.s1 { color: #a9b7c6;}
+.s2 { color: #6897bb;}
+.s3 { color: #6a8759;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+HomeActivity2.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span><span class="s1">com.example.cualsera</span><span class="s0">;</span>
+
+<span class="s0">import </span><span class="s1">androidx.appcompat.app.AppCompatActivity</span><span class="s0">;</span>
+
+<span class="s0">import </span><span class="s1">android.content.Intent</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">android.os.Bundle</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">android.view.View</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">android.widget.Button</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">android.widget.EditText</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">android.widget.Toast</span><span class="s0">;</span>
+
+<span class="s0">import </span><span class="s1">java.text.BreakIterator</span><span class="s0">;</span>
+
+<span class="s0">import static </span><span class="s1">android.widget.Toast.makeText</span><span class="s0">;</span>
+
+<span class="s0">public class </span><span class="s1">HomeActivity2 </span><span class="s0">extends </span><span class="s1">AppCompatActivity </span><span class="s0">implements </span><span class="s1">View.OnClickListener {</span>
+
+    <span class="s0">int </span><span class="s1">value = </span><span class="s2">0</span><span class="s0">, </span><span class="s1">aleatorio = </span><span class="s2">0</span><span class="s0">, </span><span class="s1">intentos = </span><span class="s2">0</span><span class="s0">, </span><span class="s1">numintento</span><span class="s0">;</span>
+    <span class="s1">String temp</span><span class="s0">;</span>
+    <span class="s1">EditText editText</span><span class="s0">;</span>
+    <span class="s1">Button valida</span><span class="s0">;</span>
+
+    <span class="s1">@Override</span>
+    <span class="s0">protected void </span><span class="s1">onCreate(Bundle savedInstanceState) {</span>
+        <span class="s0">super</span><span class="s1">.onCreate(savedInstanceState)</span><span class="s0">;</span>
+        <span class="s1">setContentView(R.layout.activity_home2)</span><span class="s0">;</span>
+
+        <span class="s1">editText = findViewById(R.id.Number)</span><span class="s0">;</span>
+        <span class="s1">valida = findViewById(R.id.btnnumber)</span><span class="s0">;</span>
+        <span class="s1">valida.setOnClickListener(</span><span class="s0">this</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">aleatorio = (</span><span class="s0">int</span><span class="s1">) Math.floor(Math.random()*</span><span class="s2">100</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">intentos = getIntent().getIntExtra(</span><span class="s3">&quot;number&quot;</span><span class="s0">, </span><span class="s2">0</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">numintento = intentos</span><span class="s0">;</span>
+    <span class="s1">}</span>
+
+    <span class="s1">@Override</span>
+    <span class="s0">public void </span><span class="s1">onClick(View v) {</span>
+        <span class="s0">if </span><span class="s1">(v.getId() == R.id.btnnumber &amp;&amp; numintento != </span><span class="s2">0</span><span class="s1">) {</span>
+            <span class="s0">if</span><span class="s1">(editText.equals(</span><span class="s3">&quot;&quot;</span><span class="s1">)){</span>
+                <span class="s1">Toast.makeText(getApplicationContext()</span><span class="s0">,</span><span class="s3">&quot;Casilla vacia&quot;</span><span class="s0">,</span><span class="s1">Toast.LENGTH_LONG).show()</span><span class="s0">;</span>
+            <span class="s1">}</span><span class="s0">else</span><span class="s1">{</span>
+                <span class="s1">value = Integer.parseInt(editText.getText().toString())</span><span class="s0">;</span>
+                <span class="s0">if</span><span class="s1">(value == aleatorio){</span>
+                    <span class="s1">Toast.makeText(getApplicationContext()</span><span class="s0">,</span><span class="s3">&quot;El numero ingresado es el mismo que el numero aleatorio: &quot;</span><span class="s1">+numintento</span><span class="s0">,</span><span class="s1">Toast.LENGTH_LONG).show()</span><span class="s0">;</span>
+                <span class="s1">}</span><span class="s0">else</span><span class="s1">{</span>
+                    <span class="s0">if</span><span class="s1">(value &lt; aleatorio){</span>
+                        <span class="s1">Toast.makeText(getApplicationContext()</span><span class="s0">,</span><span class="s3">&quot;El numero ingresado es menor&quot;</span><span class="s1">+numintento</span><span class="s0">,</span><span class="s1">Toast.LENGTH_LONG).show()</span><span class="s0">;</span>
+                        <span class="s1">numintento--</span><span class="s0">;</span>
+                    <span class="s1">}</span><span class="s0">else</span><span class="s1">{</span>
+                        <span class="s1">Toast.makeText(getApplicationContext()</span><span class="s0">,</span><span class="s3">&quot;El numero ingresado es mayor&quot;</span><span class="s1">+numintento</span><span class="s0">,</span><span class="s1">Toast.LENGTH_LONG).show()</span><span class="s0">;</span>
+                        <span class="s1">numintento--</span><span class="s0">;</span>
+                    <span class="s1">}</span>
+                <span class="s1">}</span>
+            <span class="s1">}</span>
+        <span class="s1">}</span><span class="s0">else</span><span class="s1">{</span>
+            <span class="s1">Toast.makeText(getApplicationContext()</span><span class="s0">,</span><span class="s3">&quot;perdiste&quot;</span><span class="s0">,</span><span class="s1">Toast.LENGTH_LONG).show()</span><span class="s0">;</span>
+        <span class="s1">}</span>
+    <span class="s1">}</span>
+<span class="s1">}</span>
+
+</pre>
+</body>
+</html>

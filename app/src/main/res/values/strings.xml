@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">CualSera</string>
+    <string name="adivina">¿Cúal será el número?</string>
+    <string name="textview">Elija el número de intentos:</string>
+    <string name="jugar">JUGAR</string>
+    <string name="texthome">¿Qué número será?</string>
+    <string name="texthome2">Ingrese el numero:</string>
+    <string name="btnvalidar">Validar</string>
+    <string name="sugerencia">Elija el numero de intentos</string>
+
+</resources>

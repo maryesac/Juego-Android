@@ -36,24 +36,28 @@ public class HomeActivity2 extends AppCompatActivity implements View.OnClickList
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.btnnumber && numintento != 0) {
-            if(editText.equals("")){
+            if(editText.length() == 0){
                 Toast.makeText(getApplicationContext(),"Casilla vacia",Toast.LENGTH_LONG).show();
-            }else{
+            }else {
                 value = Integer.parseInt(editText.getText().toString());
-                if(value == aleatorio){
-                    Toast.makeText(getApplicationContext(),"El numero ingresado es el mismo que el numero aleatorio: "+numintento,Toast.LENGTH_LONG).show();
-                }else{
-                    if(value < aleatorio){
-                        Toast.makeText(getApplicationContext(),"El numero ingresado es menor"+numintento,Toast.LENGTH_LONG).show();
+                if (value == aleatorio) {
+                    Intent i = new Intent(getApplicationContext(), youwin.class);
+                    startActivity(i);
+                } else {
+                    if (value < aleatorio) {
                         numintento--;
-                    }else{
-                        Toast.makeText(getApplicationContext(),"El numero ingresado es mayor"+numintento,Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "El numero ingresado es menor", Toast.LENGTH_LONG).show();
+                    } else {
                         numintento--;
+                        Toast.makeText(getApplicationContext(), "El numero ingresado es mayor", Toast.LENGTH_LONG).show();
                     }
                 }
+                if(numintento == 0){
+                    Intent i = new Intent(getApplicationContext(), gameover.class);
+                    i.putExtra("valornumerico", aleatorio);
+                    startActivity(i);
+                }
             }
-        }else{
-            Toast.makeText(getApplicationContext(),"perdiste",Toast.LENGTH_LONG).show();
         }
     }
 }
